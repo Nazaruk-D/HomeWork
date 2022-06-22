@@ -1,5 +1,5 @@
-export const NewComponent = (props:NewComponentType) => {
+export const NewComponent = () => {
     return (
-        <div></div>
+        <div>123</div>
     )
 }
