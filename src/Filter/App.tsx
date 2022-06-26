@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {NewFilter} from "./components/New";
+import {NewFilter} from "../components/New";
 
 type FilterType = "all" | "RUBLS" | "Dollars"
 
