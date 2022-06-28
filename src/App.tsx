@@ -1,41 +1,41 @@
 import React, {useState} from 'react';
 import logo from './logo.svg';
 import './App.css';
-import {NewFilter} from "./components/New";
+import {FullInput} from "./components/FullInput";
+import {Input} from "./components/Input";
+import {ButtonInput} from "./components/ButtonInput";
 
-type FilterType = "all" | "RUBLS" | "Dollars"
 
 function App() {
-    const [money, setMoney] = useState([
-        {banknots: 'Dollars', value: 100, number: ' a1234567890'},
-        {banknots: 'Dollars', value: 50, number: ' z1234567890'},
-        {banknots: 'RUBLS', value: 100, number: ' w1234567890'},
-        {banknots: 'Dollars', value: 100, number: ' e1234567890'},
-        {banknots: 'Dollars', value: 50, number: ' c1234567890'},
-        {banknots: 'RUBLS', value: 100, number: ' r1234567890'},
-        {banknots: 'Dollars', value: 50, number: ' x1234567890'},
-        {banknots: 'RUBLS', value: 50, number: ' v1234567890'},
+    const [message, setMessage] = useState([
+        {message: "message1"},
+        {message: "message2"},
+        {message: "message3"}
     ])
 
-    const [filter, setFilter] = useState("all")
+    let [title, setTitle] = useState("")
 
-    let currentMoney = money;
-    if (filter === "RUBLS") {
-        currentMoney = money.filter((e) => e.banknots === "RUBLS");
-    }
-    if (filter === "Dollars") {
-        currentMoney = money.filter((e) => e.banknots === "Dollars");
-    }
+    const addMessage = (title: string) => {
+        console.log(title)
+        let newMessage = {message: title};
+        setMessage([newMessage, ...message])
 
-
-    const onClickFilterHandler = (nameButton: FilterType) => {
-        setFilter(nameButton)
     }
 
+    const callBackHandler = () => {
+        addMessage(title)
+        setTitle("")
+    }
     return (
-        <>
-            <NewFilter currentMoney={currentMoney} onClickFilterHandler={onClickFilterHandler}/>
-        </>
+        <div className={"App"}>
+            <Input setTitle={setTitle} title={title}/>
+            <ButtonInput name={"+"} callBack={callBackHandler}/>
+            {message.map((el, index) => {
+                return (
+                    <div key={index}>{el.message}</div>
+                )
+            })}
+        </div>
     )
 }
 
